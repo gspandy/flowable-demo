@@ -1,0 +1,38 @@
+<div class="wrapper wrapper-content">
+	 <div class="row">
+        <div class="col-xs-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5><strong>黄金股票列表</strong></h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                	<div class="row">
+	                	<div class="col-xs-12 col-md-4">
+	                		<div class="input-group m-b">
+	                			<span class="input-group-addon">股票名称</span> 
+	                			<input type="text" placeholder="输入股票名称" class="form-control" ng-model="queryParams.stockName"></input> 
+                           	</div>
+	                	</div>
+	                    <div class="col-xs-12 col-md-5">
+							<div class="input-group m-b">
+								<span class="input-group-addon">股票编码</span> 
+								<input type="text" placeholder="输入股票编码" class="form-control" ng-model="queryParams.stockCode"></input> 
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-info" ng-click="getStockGolds(1)"><i class="fa fa-search"></i>&nbsp;搜索</button>
+								</span>
+							</div>
+						</div>
+                    </div>
+					
+					<div class="row">
+						<div class="col-xs-12">
+							<table ng-table="goldTableOptions" class="table table-striped table-bordered table-hover ng-table">
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
