@@ -2,7 +2,9 @@ package com.plumdo.rest.model.resource;
 
 
 import org.flowable.engine.ManagementService;
+import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.repository.Model;
+import org.flowable.engine.repository.ProcessDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.plumdo.cmd.DeployModelCmd;
+import com.plumdo.rest.model.ProcessDefinitionResponse;
 
 
 @RestController

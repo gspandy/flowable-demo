@@ -8,97 +8,102 @@ import org.flowable.engine.common.api.query.Query;
 import org.flowable.engine.common.api.query.QueryProperty;
 import org.flowable.engine.impl.AbstractQuery;
 
-
 public abstract class AbstractPaginateList {
-	
+
 	@SuppressWarnings("rawtypes")
-	public DataResponse paginateList(Map<String, String> requestParams, PaginateRequest paginateRequest, Query query,
-			String defaultSort, Map<String, QueryProperty> properties) {
-	  	
+	public DataResponse paginateList(Map<String, String> requestParams, PaginateRequest paginateRequest, Query query, String defaultSort, Map<String, QueryProperty> properties) {
+
 		if (paginateRequest == null) {
-	  		paginateRequest = new PaginateRequest();
-	  	}
-	  	
-	  	// In case pagination request is incomplete, fill with values found in URL if possible
-	  	if (paginateRequest.getStart() == null) {
-	  		paginateRequest.setStart(RequestUtil.getInteger(requestParams, "start", 0));
-	  	}
-	  	
-	  	if (paginateRequest.getSize() == null) {
-	  		paginateRequest.setSize(RequestUtil.getInteger(requestParams, "size", 10));
-	  	}
-	  	
-	  	if (paginateRequest.getOrder() == null) {
-	  		paginateRequest.setOrder(requestParams.get("order"));
-	  	}
-	  	
-	  	if (paginateRequest.getSort() == null) {
-	  		paginateRequest.setSort(requestParams.get("sort"));
-	  	}
-	      
-	  	// Use defaults for paging, if not set in the PaginationRequest, nor in the URL
-	  	Integer start = paginateRequest.getStart();
-	  	if(start == null || start < 0) {
-	  		start = 0;
-	  	}
-	  	
-	    Integer size = paginateRequest.getSize();
-	    if(size == null || (size!=-1 && size < 0)) {
-	    	size = 10;
-	    }
-	    
-	    String sort = paginateRequest.getSort();
-	    if(sort == null) {
-	      sort = defaultSort;
-	    }
-	    String order = paginateRequest.getOrder();
-	    if(order == null) {
-	      order = "asc";
-	    }
+			paginateRequest = new PaginateRequest();
+		}
 
-	    // Sort order
-	    if (sort != null && !properties.isEmpty()) {
-	    	QueryProperty qp = properties.get(sort);
-	    	if (qp == null) {
-	    		throw new FlowableIllegalArgumentException("Value for param 'sort' is not valid, '" + sort + "' is not a valid property");
-	    	}
-	    	((AbstractQuery) query).orderBy(qp);
-	    	if (order.equals("asc")) {
-	    		query.asc();
-	    	}else if (order.equals("desc")) {
-	    		query.desc();
-	    	}else {
-	    		throw new FlowableIllegalArgumentException("Value for param 'order' is not valid : '" + order + "', must be 'asc' or 'desc'");
-	    	}
-	    }
+		// In case pagination request is incomplete, fill with values found in
+		// URL if possible
+		if (paginateRequest.getPageNum() == null) {
+			paginateRequest.setPageNum(RequestUtil.getInteger(requestParams, "pageNum", 1));
+		}
 
-	    // Get result and set pagination parameters
-	    List list = null;
-	    //size等于-1不做分页
-	    if(size == -1){
-	    	start = 0;
-	    	list = processList(query.list());
-	    }else{
-	    	list = processList(query.listPage(start, size));
-	    }
-	    DataResponse response = new DataResponse();
-	    response.setStart(start);
-	    response.setSize(list.size()); 
-	    response.setSort(sort);
-	    response.setOrder(order);
-	    response.setTotal(query.count());
-	    response.setData(list);
-	    return response;
+		if (paginateRequest.getPageSize() == null) {
+			paginateRequest.setPageSize(RequestUtil.getInteger(requestParams, "pageSize", 10));
+		}
+
+		if (paginateRequest.getSortOrder() == null) {
+			paginateRequest.setSortOrder(requestParams.get("sortOrder"));
+		}
+
+		if (paginateRequest.getSortName() == null) {
+			paginateRequest.setSortName(requestParams.get("sortName"));
+		}
+
+		// Use defaults for paging, if not set in the PaginationRequest, nor in
+		// the URL
+		Integer pageNum = paginateRequest.getPageNum();
+		if (pageNum == null || pageNum <= 0) {
+			pageNum = 1;
+		}
+
+		Integer pageSize = paginateRequest.getPageSize();
+		if (pageSize == null || (pageSize != -1 && pageSize < 0)) {
+			pageSize = 10;
+		}
+
+		String sort = paginateRequest.getSortName();
+		if (sort == null) {
+			sort = defaultSort;
+		}
+		String order = paginateRequest.getSortOrder();
+		if (order == null) {
+			order = "asc";
+		}
+
+		// Sort order
+		if (sort != null && !properties.isEmpty()) {
+			QueryProperty qp = properties.get(sort);
+			if (qp == null) {
+				throw new FlowableIllegalArgumentException("Value for param 'sort' is not valid, '" + sort + "' is not a valid property");
+			}
+			((AbstractQuery) query).orderBy(qp);
+			if (order.equals("asc")) {
+				query.asc();
+			} else if (order.equals("desc")) {
+				query.desc();
+			} else {
+				throw new FlowableIllegalArgumentException("Value for param 'order' is not valid : '" + order + "', must be 'asc' or 'desc'");
+			}
+		}
+
+		// Get result and set pagination parameters
+		List list = null;
+		// size等于-1不做分页
+		if (pageSize == -1) {
+			list = processList(query.list());
+		} else {
+			list = processList(query.listPage((pageNum - 1) * pageSize, pageSize));
+		}
+		DataResponse response = new DataResponse();
+		response.setData(list);
+		response.setDataTotal(query.count());
+		response.setPageSize(pageSize);
+		response.setPageNum(pageNum);
+		response.setStartNum((pageNum - 1) * pageSize + 1);
+		if (response.getDataTotal() > pageNum * pageSize) {
+			response.setEndNum(pageNum * pageSize);
+		} else {
+			response.setEndNum(response.getDataTotal());
+		}
+		if (response.getDataTotal() % pageSize == 0) {
+			response.setPageTotal((int) (response.getDataTotal() / pageSize));
+		} else {
+			response.setPageTotal((int) (response.getDataTotal() / pageSize) + 1);
+		}
+		return response;
 	}
-	  
-	  
-	  
+
 	@SuppressWarnings("rawtypes")
-	public DataResponse paginateList(Map<String, String> requestParams, Query query,
-	      String defaultSort, Map<String, QueryProperty> properties) {
+	public DataResponse paginateList(Map<String, String> requestParams, Query query, String defaultSort, Map<String, QueryProperty> properties) {
 		return paginateList(requestParams, null, query, defaultSort, properties);
 	}
-	  
+
 	@SuppressWarnings("rawtypes")
 	protected abstract List processList(List list);
 }

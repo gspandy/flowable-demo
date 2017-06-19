@@ -2,88 +2,43 @@ var PLUMDO = PLUMDO || {};
 
 PLUMDO.URL = {
 
-    getStockInfos: function(){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-infos';
+    getModels: function(){
+    	return PLUMDO.CONFIG.contextRoot + '/model';
     },
-    createStockInfo: function(){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-infos';
+    createModel: function(){
+    	return PLUMDO.CONFIG.contextRoot + '/model';
     },
-    getStockInfo: function(stockId){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-infos/'+stockId;
+    getModel: function(modelId){
+    	return PLUMDO.CONFIG.contextRoot + '/model/'+modelId;
     },
-    updateStockInfo: function(stockId){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-infos/'+stockId;
+    updateModel: function(modelId){
+    	return PLUMDO.CONFIG.contextRoot + '/model/'+modelId;
     },
-    deleteStockInfo: function(stockId){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-infos/'+stockId;
+    deleteModel: function(modelId){
+    	return PLUMDO.CONFIG.contextRoot + '/model/'+modelId;
     },
-    getStockDetails: function(){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-details';
+    deployModel: function(modelId){
+    	return PLUMDO.CONFIG.contextRoot + '/model/'+modelId+'/deploy';
     },
-    createStockDetail: function(){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-details';
+    designModel: function(modelId){
+    	return PLUMDO.CONFIG.contextRoot + '/modeler/index.html?modelId='+modelId;
     },
-    getStockDetail: function(detailId){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-details/'+detailId;
+    processImage: function(processInstanceId){
+    	return PLUMDO.CONFIG.contextRoot + '/process-instance/'+processInstanceId+'/image';
     },
-    updateStockDetail: function(detailId){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-details/'+detailId;
+    getOas: function(){
+    	return PLUMDO.CONFIG.contextRoot + '/oa';
     },
-    deleteStockDetail: function(detailId){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-details/'+detailId;
+    startOa: function(){
+    	return PLUMDO.CONFIG.contextRoot + '/oa/start';
     },
-    collectStockDetails: function(threadNum){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-details/collect?threadNum='+threadNum;
+    getOa: function(oaId){
+    	return PLUMDO.CONFIG.contextRoot + '/oa/'+oaId;
     },
-    getStockGolds: function(){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-report/stock-golds';
+    completeOa: function(oaId){
+    	return PLUMDO.CONFIG.contextRoot + '/oa/'+oaId+'/complete';
     },
-    getStockWeaks: function(){
-    	return PLUMDO.CONFIG.contextRoot + '/stock-report/stock-weaks';
-    },
-	getStockHotPlates: function(){
-		return PLUMDO.CONFIG.contextRoot + '/stock-hot-plates';
-	},
-	createStockHotPlate: function(){
-		return PLUMDO.CONFIG.contextRoot + '/stock-hot-plates';
-	},
-	getStockHotPlate: function(hotPlateId){
-		return PLUMDO.CONFIG.contextRoot + '/stock-hot-plates/'+hotPlateId;
-	},
-	updateStockHotPlate: function(hotPlateId){
-		return PLUMDO.CONFIG.contextRoot + '/stock-hot-plates/'+hotPlateId;
-	},
-	deleteStockHotPlate: function(hotPlateId){
-		return PLUMDO.CONFIG.contextRoot + '/stock-hot-plates/'+hotPlateId;
-	},
-	getStockMonsters: function(){
-		return PLUMDO.CONFIG.contextRoot + '/stock-monsters';
-	},
-	createStockMonster: function(){
-		return PLUMDO.CONFIG.contextRoot + '/stock-monsters';
-	},
-	getStockMonster: function(monsterId){
-		return PLUMDO.CONFIG.contextRoot + '/stock-monsters/'+monsterId;
-	},
-	updateStockMonster: function(monsterId){
-		return PLUMDO.CONFIG.contextRoot + '/stock-monsters/'+monsterId;
-	},
-	deleteStockMonster: function(monsterId){
-		return PLUMDO.CONFIG.contextRoot + '/stock-monsters/'+monsterId;
-	},
-	getLotteryDetails: function(){
-		return PLUMDO.CONFIG.contextRoot + '/lottery-details';
-	},
-	createLotteryDetail: function(){
-		return PLUMDO.CONFIG.contextRoot + '/lottery-details';
-	},
-	getLotteryDetail: function(detailId){
-		return PLUMDO.CONFIG.contextRoot + '/lottery-details/'+detailId;
-	},
-	updateLotteryDetail: function(detailId){
-		return PLUMDO.CONFIG.contextRoot + '/lottery-details/'+detailId;
-	},
-	deleteLotteryDetail: function(detailId){
-		return PLUMDO.CONFIG.contextRoot + '/lottery-details/'+detailId;
-	}
+    returnOa: function(oaId){
+    	return PLUMDO.CONFIG.contextRoot + '/oa/'+oaId+'/return';
+    }
 };

@@ -2,11 +2,11 @@ package com.plumdo.rest.model.resource;
 
 import java.io.ByteArrayInputStream;
 
-import org.activiti.bpmn.converter.BpmnXMLConverter;
-import org.activiti.bpmn.model.BpmnModel;
-import org.activiti.editor.language.json.converter.BpmnJsonConverter;
-import org.activiti.engine.ActivitiException;
-import org.activiti.engine.repository.Model;
+import org.flowable.bpmn.converter.BpmnXMLConverter;
+import org.flowable.bpmn.model.BpmnModel;
+import org.flowable.editor.language.json.converter.BpmnJsonConverter;
+import org.flowable.engine.common.api.FlowableException;
+import org.flowable.engine.repository.Model;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -37,7 +37,7 @@ public class ModelXmlResource extends BaseModelResource{
 	      	responseHeaders.setContentType(MediaType.TEXT_XML);
 	      	return new ResponseEntity<byte[]>(IOUtils.toByteArray(in), responseHeaders,HttpStatus.OK);
 	    } catch (Exception e) {
-	    	throw new ActivitiException("Error converting resource stream", e);
+	    	throw new FlowableException("Error converting resource stream", e);
 	    }
 	}
 }

@@ -1,44 +1,45 @@
 package com.plumdo.rest;
 
 public class PaginateRequest {
-	
-	protected Integer start;
-	
-	protected Integer size;
-	
-	protected String sort;
-	
-	protected String order;
 
-	public Integer getStart() {
-		return start;
+	protected Integer pageNum;
+
+	protected Integer pageSize;
+
+	protected String sortName;
+
+	protected String sortOrder;
+
+	public Integer getPageNum() {
+		return pageNum;
 	}
 
-	public void setStart(Integer start) {
-		this.start = start;
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
 	}
 
-	public Integer getSize() {
-		return size;
+	public Integer getPageSize() {
+		return pageSize;
 	}
 
-	public void setSize(Integer size) {
-		this.size = size;
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
 	}
 
-	public String getSort() {
-		return sort;
+	public String getSortName() {
+		return sortName;
 	}
 
-	public void setSort(String sort) {
-		this.sort = sort;
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
 	}
 
-	public String getOrder() {
-		return order;
+	public String getSortOrder() {
+		return sortOrder;
 	}
 
-	public void setOrder(String order) {
-		this.order = order;
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
 	}
+
 }

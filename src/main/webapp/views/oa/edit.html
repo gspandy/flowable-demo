@@ -1,0 +1,30 @@
+<div class="inmodal">
+	<div class="modal-header">
+		<h5 class="modal-title">{{modalTitle}}</h5>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<form class="form-horizontal" role="form" novalidate name="editForm">
+					
+					<div class="form-group">
+						<label class="col-xs-2 control-label">申请人ID</label> 
+						<div class="col-xs-10">
+							<input type="text" placeholder="输入申请人ID" class="form-control" name="applyUserId" ng-model="formdata.applyUserId"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">理由</label> 
+						<div class="col-xs-10">
+							<input type="text" placeholder="输入理由" class="form-control" name="applyReason" ng-model="formdata.applyReason"></input>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-white" ng-click="cancel()">取消</button>
+		<button type="button" class="btn btn-primary" ng-disabled="editForm.$invalid" ng-click="ok()">确定</button>
+	</div>
+</div>

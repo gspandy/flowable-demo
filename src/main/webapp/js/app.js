@@ -16,12 +16,6 @@
         'plumdo.services'
     ]).run(function($rootScope, $state,$uibModal,notify) {
     	
-    	/*$rootScope.$on("$includeContentLoaded", function(event, templateName){
-    		if(templateName.includes("board.html")){
-       	 		$state.go('sys.stock-info');
-    		}
-    	});*/
-    	
     	$rootScope.progressNum = 0;
     	
     	$rootScope.showProgress = function (msg) {

@@ -3,16 +3,14 @@ package com.plumdo.rest.model.resource;
 import java.io.InputStream;
 import java.util.Collections;
 
-
-
-import org.activiti.bpmn.model.BpmnModel;
-import org.activiti.editor.constants.ModelDataJsonConstants;
-import org.activiti.editor.language.json.converter.BpmnJsonConverter;
-import org.activiti.engine.ActivitiException;
-import org.activiti.engine.ProcessEngineConfiguration;
-import org.activiti.engine.repository.Model;
-import org.activiti.image.ProcessDiagramGenerator;
 import org.apache.commons.io.IOUtils;
+import org.flowable.bpmn.model.BpmnModel;
+import org.flowable.editor.constants.ModelDataJsonConstants;
+import org.flowable.editor.language.json.converter.BpmnJsonConverter;
+import org.flowable.engine.ProcessEngineConfiguration;
+import org.flowable.engine.common.api.FlowableException;
+import org.flowable.engine.repository.Model;
+import org.flowable.image.ProcessDiagramGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.starnet.activiti.rest.service.model.ModelEditorJsonRequest;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.plumdo.rest.model.ModelEditorJsonRequest;
 
 @RestController
 public class ModelSaveRestResource extends BaseModelResource implements ModelDataJsonConstants {
@@ -81,7 +78,7 @@ public class ModelSaveRestResource extends BaseModelResource implements ModelDat
 			
 		} catch (Exception e) {
 			LOGGER.error("Error saving model", e);
-			throw new ActivitiException("Error saving model", e);
+			throw new FlowableException("Error saving model", e);
 		}
 		
 	}

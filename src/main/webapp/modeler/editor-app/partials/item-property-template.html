@@ -1,0 +1,13 @@
+<span class="title property" >{{ property.title }}&nbsp;:</span>
+<!--
+<span class="title-removed property" ng-if="property.hidden"><i>{{ property.title }}&nbsp;({{'PROPERTY.REMOVED' | translate}})&nbsp;:</i></span>
+-->
+<span class="value property" ng-if="!property.hidden"> 
+    <ng-include
+        src="getPropertyTemplateUrl($index)" ng-if="!property.hasReadWriteMode"></ng-include>
+    <ng-include src="getPropertyReadModeTemplateUrl($index)"
+        ng-if="property.hasReadWriteMode && property.mode == 'read'"></ng-include>
+    <ng-include src="getPropertyWriteModeTemplateUrl($index)"
+        ng-if="property.hasReadWriteMode && property.mode == 'write'"></ng-include>
+</span>
+

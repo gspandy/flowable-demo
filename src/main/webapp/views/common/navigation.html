@@ -3,33 +3,17 @@
         <ul side-navigation class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="profile-element">
-                	<div class="logo"><i class="fa fa-leaf"></i> Plumdo-Stock</div>
+                	<div class="logo"><i class="fa fa-leaf"></i> Flowable-Demo</div>
                 </div>
                 <div class="logo-element">
-                    Plumdo
+                    Flow
                 </div>
             </li>
-            <li ui-sref-active="active">
-                <a ui-sref="stock-info"><i class="fa fa-pie-chart"></i> <span class="nav-label">股票管理</span> </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="stock-detail"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">股票详情</span> </a>
-            </li>
-           	<li ng-class="{active: $state.includes('stock-report')}">
-                <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">股票报表</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('stock-report')}">
-                    <li ui-sref-active="active"><a ui-sref="stock-report.gold">黄金股详情</a></li>
-                    <li ui-sref-active="active"><a ui-sref="stock-report.weak.list">弱势股详情</a></li>
-                </ul>
-            </li>
 			<li ui-sref-active="active">
-				<a ui-sref="stock-hot-plate"><i class="fa fa-bookmark"></i> <span class="nav-label">热门板块</span> </a>
+				<a ui-sref="model"><i class="fa fa-star"></i> <span class="nav-label">流程模型</span> </a>
 			</li>
-			<li ui-sref-active="active">
-				<a ui-sref="stock-monster"><i class="fa fa-truck"></i> <span class="nav-label">妖股详情</span> </a>
-			</li>
-			<li ui-sref-active="active">
-				<a ui-sref="lottery-detail"><i class="fa fa-star"></i> <span class="nav-label">六合彩</span> </a>
+				<li ui-sref-active="active">
+				<a ui-sref="oa"><i class="fa fa-bookmark"></i> <span class="nav-label">OA演示</span> </a>
 			</li>
         </ul>
 

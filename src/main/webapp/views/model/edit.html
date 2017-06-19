@@ -1,0 +1,47 @@
+<div class="inmodal">
+	<div class="modal-header">
+		<h5 class="modal-title">{{modalTitle}}</h5>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<form class="form-horizontal" role="form" novalidate name="editForm">
+					<div class="form-group">
+						<label class="col-xs-2 control-label">名称</label> 
+						<div class="col-xs-10">
+							<input type="text" placeholder="输入名称" class="form-control" name="name" ng-model="formdata.name"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">标识</label> 
+						<div class="col-xs-10">
+							<input type="text" placeholder="输入标识" class="form-control" name="key" ng-model="formdata.key"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">分类</label> 
+						<div class="col-xs-10">
+							<input type="text" placeholder="输入分类" class="form-control" name="category" ng-model="formdata.category"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">版本号</label> 
+						<div class="col-xs-10">
+							<input type="text" placeholder="输入版本号" class="form-control" name="version" ng-model="formdata.version"></input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">租户ID</label> 
+						<div class="col-xs-10">
+							<input type="text" placeholder="输入租户ID" class="form-control" name="tenantId" ng-model="formdata.tenantId"></input>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-white" ng-click="cancel()">取消</button>
+		<button type="button" class="btn btn-primary" ng-disabled="editForm.$invalid" ng-click="ok()">确定</button>
+	</div>
+</div>

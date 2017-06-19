@@ -1,9 +1,9 @@
 package com.plumdo.rest.model.resource;
 
-import org.activiti.editor.constants.ModelDataJsonConstants;
-import org.activiti.engine.ActivitiException;
-import org.activiti.engine.repository.Model;
 import org.apache.commons.lang3.StringUtils;
+import org.flowable.editor.constants.ModelDataJsonConstants;
+import org.flowable.engine.common.api.FlowableException;
+import org.flowable.engine.repository.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +42,10 @@ public class ModelEditorJsonRestResource extends BaseModelResource implements Mo
 				modelNode.put("tenantId", model.getTenantId());
 				modelNode.put(MODEL_ID, model.getId());
 				ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(new String(repositoryService.getModelEditorSource(model.getId()), "utf-8"));
-				modelNode.put("model", editorJsonNode);
+				modelNode.set("model", editorJsonNode);
 			} catch (Exception e) {
 				LOGGER.error("Error creating model JSON", e);
-				throw new ActivitiException("Error creating model JSON", e);
+				throw new FlowableException("Error creating model JSON", e);
 			}
 		}
 		return modelNode;

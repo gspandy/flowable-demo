@@ -1,60 +1,68 @@
 package com.plumdo.rest;
 
-
 public class DataResponse {
 	protected Object data;
-	protected long total;
-	protected int start;
-	protected String sort;
-	protected String order;
-	protected int size;
+	protected int pageNum;
+	protected int pageSize;
+	protected int pageTotal;
+	protected long dataTotal;
+	protected long startNum;
+	protected long endNum;
 
 	public Object getData() {
 		return data;
 	}
 
-	public DataResponse setData(Object data) {
-	    this.data = data;
-	    return this;
+	public void setData(Object data) {
+		this.data = data;
 	}
 
-	public long getTotal() {
-	    return total;
+	public int getPageNum() {
+		return pageNum;
 	}
 
-	public void setTotal(long total) {
-	    this.total = total;
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
 	}
 
-	public int getStart() {
-	    return start;
+	public int getPageSize() {
+		return pageSize;
 	}
 
-	public void setStart(int start) {
-	    this.start = start;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
 
-	public String getSort() {
-	    return sort;
+	public int getPageTotal() {
+		return pageTotal;
 	}
 
-	public void setSort(String sort) {
-	    this.sort = sort;
+	public void setPageTotal(int pageTotal) {
+		this.pageTotal = pageTotal;
 	}
 
-	public String getOrder() {
-	    return order;
+	public long getDataTotal() {
+		return dataTotal;
 	}
 
-	public void setOrder(String order) {
-	    this.order = order;
+	public void setDataTotal(long dataTotal) {
+		this.dataTotal = dataTotal;
 	}
 
-	public int getSize() {
-	    return size;
+	public long getStartNum() {
+		return startNum;
 	}
 
-	public void setSize(int size) {
-	    this.size = size;
-  	}
+	public void setStartNum(long startNum) {
+		this.startNum = startNum;
+	}
+
+	public long getEndNum() {
+		return endNum;
+	}
+
+	public void setEndNum(long endNum) {
+		this.endNum = endNum;
+	}
+
 }

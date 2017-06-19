@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.flowable.editor.constants.EditorJsonConstants;
+import org.flowable.editor.constants.StencilConstants;
 import org.flowable.engine.common.api.query.QueryProperty;
 import org.flowable.engine.impl.ModelQueryProperty;
 import org.flowable.engine.repository.Model;
@@ -127,10 +129,10 @@ public class ModelResource extends BaseModelResource {
 			propertieNode.put(StencilConstants.PROPERTY_PROCESS_ID, "model_"+model.getId());
 		}
 		propertieNode.put(StencilConstants.PROPERTY_NAME, model.getName());
-		editorNode.put(EditorJsonConstants.EDITOR_SHAPE_PROPERTIES, propertieNode);
+		editorNode.set(EditorJsonConstants.EDITOR_SHAPE_PROPERTIES, propertieNode);
 		ObjectNode stencilSetNode = objectMapper.createObjectNode();
 		stencilSetNode.put("namespace", "http://b3mn.org/stencilset/bpmn2.0#");
-		editorNode.put("stencilset", stencilSetNode);
+		editorNode.set("stencilset", stencilSetNode);
 		try {
 			repositoryService.addModelEditorSource(model.getId(), editorNode.toString().getBytes("utf-8"));
 		} catch (UnsupportedEncodingException e) {
